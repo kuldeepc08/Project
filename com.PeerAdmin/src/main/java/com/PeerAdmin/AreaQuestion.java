@@ -9,7 +9,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class AreaQuestion extends Page{
+public class AreaQuestion{
+	WebDriver driver;
 
 	public AreaQuestion(WebDriver driver)
 	{
@@ -40,13 +41,6 @@ public class AreaQuestion extends Page{
 		System.out.println("Area Header is  - " +header.getText());
 		driver.switchTo().defaultContent();
 	}
-	public void contentBelowAreaQuestion()
-	{
-		frames();
-		WebElement content = mainPanel().findElement(By.xpath("//app-display-area/div/div/p/p"));
-		System.out.println("Content below Area is  - " +content.getText());
-		driver.switchTo().defaultContent();
-	}
 	public void valueSendToTextBox()
 	{
 		frames();
@@ -61,14 +55,7 @@ public class AreaQuestion extends Page{
 		for (int i = 0; i < element.size(); i++) {
 			System.out.println("All Options from DropDown - " +element.get(i).getText());
 		}
-		objSelect.selectByIndex(2);
-		driver.switchTo().defaultContent();
-	}
-	public void clickOnClearButton()
-	{
-		frames();
-		WebElement clearButton = mainPanel().findElement(By.cssSelector(".btn.panel-theme-clearbutton"));
-		clearButton.click();
+		objSelect.selectByIndex(1);
 		driver.switchTo().defaultContent();
 	}
 	public void learnMoreArea()
@@ -97,11 +84,9 @@ public class AreaQuestion extends Page{
 	public void allFuntionsAreaQuestions()
 	{
 		areaQuestionHeader();
-		contentBelowAreaQuestion();
 		valueSendToTextBox();
-		clickOnClearButton();
-		learnMoreArea();
-		learnMoreText();
+		/*learnMoreArea();
+		learnMoreText();*/
 		clickOnContinue();
 	}
 }

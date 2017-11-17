@@ -9,8 +9,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class SingleandMultiPulldown extends Page{
+public class SingleandMultiPulldown{
 	
+	WebDriver driver;
 	public SingleandMultiPulldown(WebDriver driver)
 	{
 		this.driver=driver;
@@ -40,21 +41,13 @@ public class SingleandMultiPulldown extends Page{
 		System.out.println("Single and multiple question Header is  - " +header.getText());
 		driver.switchTo().defaultContent();
 	}
-
-	public void contentBelowSingleandMultiple()
-	{
-		frames();
-		WebElement content = mainPanel().findElement(By.xpath("//app-display-single-choice-pulldown/div/div/p/p"));
-		System.out.println("Content below single and multiple is  - " +content.getText());
-		driver.switchTo().defaultContent();
-	}
 	public void clickOnPulldown() throws InterruptedException
 	{
 		frames();
 		WebElement element = mainPanel().findElement(By.cssSelector("select#response"));
 		Thread.sleep(5000);
-		Select select = new Select(element);
-		select.selectByVisibleText(StaticClass.pullDown);
+		Select select1 = new Select(element);
+		select1.selectByIndex(StaticClass.pullDown);
 		/*List<WebElement> elements = panel.findElements(By.tagName("option"));
 		for (WebElement webElement : elements) {
 			String value = webElement.getText();
@@ -69,16 +62,8 @@ public class SingleandMultiPulldown extends Page{
 	public void learnMoreSingleAndMultiple()
 	{
 		frames();
-		WebElement learnMore = mainPanel().findElement(By.xpath("//app-display-single-choice-pulldown/div/div/div[5]/a/span"));
+		WebElement learnMore = mainPanel().findElement(By.xpath("//app-display-learnmore/div/a/span"));
 		learnMore.click();
-		driver.switchTo().defaultContent();
-	}
-	public void learnMoreText()
-	{
-		frames();
-		WebElement learnMoreText =  mainPanel().findElement
-				(By.xpath("//app-display-single-choice-pulldown/div/div/div[6]/div/p/p"));
-		System.out.println("Learn more Text for Dynamic Slider Question - " +learnMoreText.getText());
 		driver.switchTo().defaultContent();
 	}
 	public void clickOnClearButton() throws InterruptedException
@@ -103,10 +88,8 @@ public class SingleandMultiPulldown extends Page{
 	public void allFunctionsSingleAndMultiple() throws InterruptedException
 	{
 		singleandMultipleHeader();
-		contentBelowSingleandMultiple();
 		clickOnPulldown();
 		learnMoreSingleAndMultiple();
-		learnMoreText();
 		clickOnClearButton();
 		clickOnContinue();
 	}

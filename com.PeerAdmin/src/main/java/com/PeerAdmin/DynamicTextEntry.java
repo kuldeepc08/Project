@@ -3,13 +3,15 @@ package com.PeerAdmin;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class DynamicTextEntry extends Page{
-	
+public class DynamicTextEntry{
+	WebDriver driver;
+	JavascriptExecutor jse = (JavascriptExecutor) driver;
 	public DynamicTextEntry(WebDriver driver)
 	{
 		this.driver=driver;
@@ -28,7 +30,7 @@ public class DynamicTextEntry extends Page{
 	}
 	public WebElement mainPanel()
 	{
-		WebElement panel = driver.findElement(By.xpath("//app-display-dynamictext/div/div/form/div[2]"));
+		WebElement panel = driver.findElement(By.xpath("//app-display-dynamictext/div/div"));
 		return panel;
 		
 	}
@@ -39,18 +41,11 @@ public class DynamicTextEntry extends Page{
 		System.out.println("Dynamic Text Entry question Title - " +header.getText());
 		driver.switchTo().defaultContent();
 	}
-	public void textBelowDynamicTextEntryQuestion()
-	{
-		frames();
-		WebElement content = mainPanel().findElement
-				(By.xpath("//app-display-dynamictext/div/div/form/p/p"));
-		System.out.println("Content below question - " +content.getText());
-		driver.switchTo().defaultContent();
-	}
+	
 	public void enterTextToTextBox()
 	{
 		frames();
-		WebElement text = mainPanel().findElement(By.id("dynamicheader"));
+		WebElement text = mainPanel().findElement(By.xpath("//tag-input/div/div/tag-input-form/form/input"));
 		text.sendKeys("Side Effects");
 		driver.switchTo().defaultContent();
 	}
@@ -76,22 +71,23 @@ public class DynamicTextEntry extends Page{
 		System.out.println("Learn more Text for Dynamic Slider Question - " +learnMoreText.getText());
 		driver.switchTo().defaultContent();
 	}
-	public void clickOnContinue()
+	public void clickOnContinue() throws InterruptedException
 	{
 		frames();
 		WebElement button = mainPanel().findElement(By.cssSelector("a.btn.panel-theme-button.btn-lg"));
 		button.click();
 		driver.switchTo().defaultContent();
+		jse.executeScript("window.scrollBy(0,-250)", "");
+		Thread.sleep(1000);
 	}
 	
-	public void allFunctionsDynaTextEntry()
+	public void allFunctionsDynaTextEntry() throws InterruptedException
 	{
 		dynamicTextEntryHeader();
-		textBelowDynamicTextEntryQuestion();
 		enterTextToTextBox();
 		addResponseButton();
-		learnMoreDynamicSlider();
-		learnMoreText();
+	//	learnMoreDynamicSlider();
+		//learnMoreText();
 		clickOnContinue();
 	}
 }

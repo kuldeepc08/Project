@@ -8,8 +8,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class CommentQuestions extends Page {
+public class CommentQuestions {
 
+	WebDriver driver;
 	public CommentQuestions(WebDriver driver)
 	{
 		this.driver=driver;
@@ -37,13 +38,6 @@ public class CommentQuestions extends Page {
 			frames();
 			WebElement header = mainPanel().findElement(By.cssSelector(".heading-top>p"));
 			System.out.println("Comment question Header is  - " +header.getText());
-			driver.switchTo().defaultContent();
-		}
-		public void contentBelowComment()
-		{
-			frames();
-			WebElement content = mainPanel().findElement(By.xpath("//app-display-comment/div/div/p/p"));
-			System.out.println("Content below Comment question is  - " +content.getText());
 			driver.switchTo().defaultContent();
 		}
 		public void checkPlaceholder()
@@ -74,7 +68,7 @@ public class CommentQuestions extends Page {
 			CommentBox();
 			frames();
 			WebElement learnMore = mainPanel().findElement
-					(By.xpath("//app-display-comment/div/div/div[3]/a/span"));
+					(By.xpath("//app-display-learnmore/div/a/span"));
 			learnMore.click();
 			driver.switchTo().defaultContent();
 		}
@@ -86,23 +80,23 @@ public class CommentQuestions extends Page {
 			System.out.println("Learn more Text for Comment Question - " +learnMoreText.getText());
 			driver.switchTo().defaultContent();
 		}
-		public void clickOnContinue()
+		public void clickOnContinue() throws InterruptedException
 		{
 			frames();
 			WebElement button = mainPanel().findElement(By.cssSelector(".btn.panel-theme-button.btn-lg"));
 			button.click();
+			Thread.sleep(5000);
 			driver.switchTo().defaultContent();
 		}
 		
-		public void allFuntionsComment()
+		public void allFuntionsComment() throws InterruptedException
 		{
 			commentQuestionHeader();
-			contentBelowComment();
-			checkPlaceholder();
+			//checkPlaceholder();
 			CommentBox();
-			clearButton();
+			//clearButton();
 			learnMoreMatrix();
-			learnMoreText();
+			//learnMoreText();
 			clickOnContinue();
 		}
 

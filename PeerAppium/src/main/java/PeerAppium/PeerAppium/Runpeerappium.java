@@ -25,7 +25,7 @@ public class Runpeerappium {
 	        capabilities.setCapability("platformVersion", "5.0");
 		    capabilities.setCapability("deviceType","phone");
 		    capabilities.setCapability("browserName", "chrome");
-		    capabilities.setCapability("deviceOrientation", "portrait");
+		   // capabilities.setCapability("deviceOrientation", "portrait");
 		    capabilities.setCapability("appiumVersion", "1.6.5");
 		//    capabilities.setCapability("phoneOnly", "true");
 		    capabilities.setCapability("waitForAppScript", true); 

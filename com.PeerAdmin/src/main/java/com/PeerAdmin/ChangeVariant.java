@@ -1,6 +1,7 @@
 package com.PeerAdmin;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -35,6 +36,8 @@ public class ChangeVariant extends Page{
 		driver.switchTo().defaultContent();
 		Thread.sleep(5000);
 		System.out.println("remove from frame");
+		Actions action = new Actions(driver);
+		action.keyDown(Keys.DOWN);
 	}
 	public void clickOnSelectSurvey() throws InterruptedException
 	{

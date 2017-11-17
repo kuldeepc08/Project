@@ -8,8 +8,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class SingleChoiceMulti extends Page{
+public class SingleChoiceMulti{
 	
+	WebDriver driver;
 	public SingleChoiceMulti(WebDriver driver)
 	{
 		this.driver=driver;
@@ -39,13 +40,7 @@ public class SingleChoiceMulti extends Page{
 		System.out.println("Single and multiple question Header is  - " +header.getText());
 		driver.switchTo().defaultContent();
 	}
-	public void contentBelowSingleandMultiple()
-	{
-		frames();
-		WebElement content = mainPanel().findElement(By.xpath("//app-display-multiple-choice/div/div/p/p"));
-		System.out.println("Content below single and multiple is  - " +content.getText());
-		driver.switchTo().defaultContent();
-	}
+
 	public void printAllDataoFCheckBox()
 	{
 		frames();
@@ -65,29 +60,20 @@ public class SingleChoiceMulti extends Page{
 		learnMore.click();
 		driver.switchTo().defaultContent();
 	}
-	public void learnMoreText()
-	{
-		frames();
-		WebElement learnMoreText = mainPanel().findElement
-				(By.xpath("//app-display-multiple-choice/div/div/div[5]/div/p/p"));
-		System.out.println("Learn more Text for Dynamic Slider Question - " +learnMoreText.getText());
-		driver.switchTo().defaultContent();
-	}
-	public void clickOnContinue()
+
+	public void clickOnContinue() throws InterruptedException
 	{
 		frames();
 		WebElement button = mainPanel().findElement(By.cssSelector(".btn.panel-theme-button.btn-lg"));
 		button.click();
+		Thread.sleep(5000);
 		driver.switchTo().defaultContent();
 	}
-	public void allFunctionsSingleAndmultipleChoice()
+	public void allFunctionsSingleAndmultipleChoice() throws InterruptedException
 	{
 		singlemultiChoiceHeader();
-		contentBelowSingleandMultiple();
 		printAllDataoFCheckBox();
 		learnMoreSingleAndMultiple();
-		learnMoreText();
-		learnMoreText();
 		clickOnContinue();
 	}
 	

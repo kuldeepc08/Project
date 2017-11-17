@@ -9,11 +9,12 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class SliderQuesion extends Page {
+public class SliderQuesion  {
 
+	WebDriver driver;
 	public SliderQuesion(WebDriver driver)
 	{
-	this.driver=driver;
+	        this.driver=driver;
 	}
 	
 	public void frames()
@@ -30,7 +31,7 @@ public class SliderQuesion extends Page {
 	public WebElement mainPanel()
 	{
 		WebElement panel = driver.findElement
-				(By.xpath("//app-display-slider/div/div"));
+				(By.xpath("//app-display-slider/div/div[1]"));
 		return panel;
 	}
 	
@@ -52,7 +53,7 @@ public class SliderQuesion extends Page {
 	public void contentBelowSliderQuestion()
 	{
 		frames();
-		if(mainPanel().findElements(By.xpath("//app-display-slider/div/div/p/p")).size()!=0)
+		if(mainPanel().findElements(By.xpath("//div/div/app-display-header/p/p")).size()!=0)
 		{
 			WebElement contentText = mainPanel().findElement(By.xpath("//app-display-slider/div/div/p/p"));
 			System.out.println("Content Below Slider Question - " +contentText.getText());
@@ -93,7 +94,8 @@ public class SliderQuesion extends Page {
 	public void learnMore()
 	{
 		frames();
-		WebElement learn = mainPanel().findElement(By.xpath("//app-display-slider/div/div/div[3]/a/span"));
+		WebElement learn = mainPanel().findElement
+				(By.xpath("//app-display-learnmore/div/a/span"));
 		learn.click();
 		driver.switchTo().defaultContent();
 	}
@@ -101,24 +103,26 @@ public class SliderQuesion extends Page {
 	{
 		frames();
 		WebElement text = mainPanel().findElement
-				(By.xpath("//app-display-slider/div/div/div[4]/div/p/p"));
+				(By.xpath("//div/div[1]/div[2]/div[4]/div/p/p"));
 		System.out.println("Learn more for Slider question- \n " +text.getText());
 		driver.switchTo().defaultContent();
 	}
-	public void clickOnContinueButton()
+	public void clickOnContinueButton() throws InterruptedException
 	{
 		frames();	
-		WebElement click = mainPanel().findElement(By.cssSelector("a.btn.panel-theme-button.btn-lg"));
+		WebElement click = mainPanel().findElement
+				(By.cssSelector(".btn.panel-theme-button.btn-lg"));
 		click.click();
+		Thread.sleep(5000);
 		driver.switchTo().defaultContent();
 	}
 	public void allFunctionsSlider() throws InterruptedException
 	{
-		verifyHeader();
-		contentBelowSliderQuestion();
-		sliderValues();
+	//	verifyHeader();
+		//contentBelowSliderQuestion();
+		//sliderValues();
 		learnMore();
-		learnMoreText();
+	//	learnMoreText();
 		clickOnContinueButton();
 	}
 	

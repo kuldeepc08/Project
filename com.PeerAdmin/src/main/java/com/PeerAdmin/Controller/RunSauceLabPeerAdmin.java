@@ -8,20 +8,16 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.Capabilities;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-
 import com.PeerAdmin.AreaQuestion;
 import com.PeerAdmin.CommentQuestions;
 import com.PeerAdmin.ConcurrentParameterized;
 import com.PeerAdmin.DynamicSlider;
 import com.PeerAdmin.DynamicTextEntry;
-import com.PeerAdmin.Econsent;
 import com.PeerAdmin.InfoPanelQuestion;
-import com.PeerAdmin.IntroPanel;
 import com.PeerAdmin.MatrixMultiChoice;
 import com.PeerAdmin.MatrixQuestion;
 import com.PeerAdmin.PickADate;
@@ -32,6 +28,7 @@ import com.PeerAdmin.SliderQuesion;
 import com.PeerAdmin.signUp;
 import com.PeerAdmin.SurveyListing;
 import com.PeerAdmin.TextEntry;
+import com.PeerAdmin.eSign;
 
 
 @RunWith(ConcurrentParameterized.class)
@@ -74,17 +71,17 @@ public static final String USERNAME = System.getenv("SAUCE_USERNAME");//aniketk
        
 		LinkedList<String[]> browsers = new LinkedList<String[]>(); 
 		
-  /*   browsers.add(new String[]{"Windows 10", "46", "firefox"}); 
-		
-	 browsers.add(new String[]{"Windows 10", "56.0", "chrome"});*/ 
-		
+      browsers.add(new String[]{"Windows 10", "51", "firefox"}); 
+       	
+	// browsers.add(new String[]{"Windows 10", "56.0", "chrome"});
+	 /* 	
 	//   browsers.add(new String[]{"Windows 10", "54.0", "chrome"});
 		
 		/*browsers.add(new String[]{"Windows 10", "56.0", "chrome"});*/
 		
 	//	browsers.add(new String[]{"Windows 10", "11.0", "internet explorer"});
 		
-		browsers.add(new String[]{"OS X 10.11","10.0","safari"});
+		//browsers.add(new String[]{"OS X 10.11","10.0","safari"});
 		
 		/*	browsers.add(new String[]{"OS X 10.11","46","firefox"});
 		
@@ -106,9 +103,10 @@ public static final String USERNAME = System.getenv("SAUCE_USERNAME");//aniketk
 		this.sessionId = (((RemoteWebDriver) driver).getSessionId()).toString();
 		String message = String.format("SauceOnDemandSessionID=%1$s",this.sessionId); 
 		System.out.println(message); 
-		driver.manage().timeouts().implicitlyWait(5,TimeUnit.MINUTES);
-		driver.manage().timeouts().pageLoadTimeout(5,TimeUnit.MINUTES);
-		Dimension dimension = new Dimension(414, 640);
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.MINUTES);
+		driver.manage().timeouts().pageLoadTimeout(10,TimeUnit.MINUTES);
+		//((Options) driver).deleteAllCookies();
+		//Dimension dimension = new Dimension(414, 640);
 		
 		/*galaxy S5 - 360*640
 		 * 320*480
@@ -120,7 +118,7 @@ public static final String USERNAME = System.getenv("SAUCE_USERNAME");//aniketk
 		 * ipad - 768 * 1024
 		 * ipad pro - 1024*1366
 		 */
-		driver.manage().window().setSize(dimension);
+		//driver.manage().window().setSize(dimension);
 		//driver.manage().window().maximize();
 		}
 	
@@ -130,14 +128,15 @@ public static final String USERNAME = System.getenv("SAUCE_USERNAME");//aniketk
 		Capabilities cap = ((RemoteWebDriver) driver).getCapabilities();
 		String browserName = cap.getBrowserName().toLowerCase();
 		System.out.println("browserName   "+browserName);
+
 		signUp lessonPage = new signUp(driver);
 		lessonPage.openUrl();
 		lessonPage.testClickOnStartNow();
 		lessonPage.sendKeysToTextBox();
      	lessonPage.clickOnSignInButton();
     	lessonPage.questions();
-		lessonPage.clickOnSignInButtonForQuestion();
-		lessonPage.sendPassword();
+		lessonPage.clickOnSignInButtonForQuestion(driver);
+		lessonPage.sendPassword(driver);
 		lessonPage.clickOnSignInButtonForLogin();
 		
 		Thread.sleep(30000);
@@ -190,18 +189,14 @@ public static final String USERNAME = System.getenv("SAUCE_USERNAME");//aniketk
 		AreaQuestion objAreaQuestion = new AreaQuestion(driver);
 		objAreaQuestion.allFuntionsAreaQuestions();
 		
+		CommentQuestions objCommentQuestions = new CommentQuestions(driver);
+		objCommentQuestions.allFuntionsComment();
 		
 		PickADate objPickADate = new PickADate(driver);
 		objPickADate.allFuntionsPickaDate();
 		
-		CommentQuestions objCommentQuestions = new CommentQuestions(driver);
-		objCommentQuestions.allFuntionsComment();
-		
-		Econsent objEconsent = new Econsent(driver);
-		objEconsent.allFuntionseConsentQuestions();
-	
-		IntroPanel objIntroPanel = new IntroPanel(driver);
-		objIntroPanel.introAllFunctions();	
+		eSign objeSign = new eSign(driver);
+		objeSign.allFuntionseeSignQuestions();
 		
 		}
 	

@@ -2,12 +2,10 @@ package com.PeerAdmin;
 
 
 import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -42,7 +40,7 @@ public class SurveyListing extends Page {
 		JavascriptExecutor je = (JavascriptExecutor) driver;
 		//Identify the WebElement which will appear after scrolling down
 		 
-		WebElement element = driver.findElement(By.xpath("//p[contains(text(),'TestingSurvey')]"));
+		WebElement element = driver.findElement(By.xpath("//p[contains(text(),'PoojaU')]"));
 		// now execute query which actually will scroll until that element is not appeared on page.
 		je.executeScript("arguments[0].scrollIntoView(true);",element);
 		 

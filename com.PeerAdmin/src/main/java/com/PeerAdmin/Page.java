@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 
 public abstract class Page { 
 	public WebDriver driver; 
-	protected final String baseUrl = "http://165.227.64.227/portal/772#/loginHome";
+	protected final String baseUrl = "http://peermvc.peerplatform.org/portal/782#/loginHome";
 	protected boolean isElementPresent(By by) { 
 		boolean present = true; 
 		try { driver.findElement(by); 

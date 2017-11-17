@@ -7,8 +7,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class MatrixQuestion extends Page{
+public class MatrixQuestion{
 
+	WebDriver driver;
 	public MatrixQuestion(WebDriver driver)
 	{
 		this.driver=driver;
@@ -38,13 +39,6 @@ public class MatrixQuestion extends Page{
 		System.out.println("Matrix Question Header is  - " +header.getText());
 		driver.switchTo().defaultContent();
 	}
-	public void contentBelowMatrix()
-	{
-		frames();
-		WebElement content = mainPanel().findElement(By.xpath("//app-display-single-matrix/div/div/p/p"));
-		System.out.println("Content below Matrix is  - " +content.getText());
-		driver.switchTo().defaultContent();
-	}
 	public void printMatrix() throws InterruptedException
 	{
 		frames();
@@ -53,11 +47,8 @@ public class MatrixQuestion extends Page{
 		System.out.println("Matrix Table Content - \n \t"  +data.getText());
 		List<WebElement> radio = data.findElements(By.cssSelector("[type='radio']"));
 		int radioSize = radio.size();
-		System.out.println(radioSize);
-		for (int i = 0; i < radioSize; i++) {
-			radio.get(i).click();
-			Thread.sleep(7000);
-		}
+			radio.get(1).click();
+			Thread.sleep(2000);
 		driver.switchTo().defaultContent();
 	}
 	public void selectRadioButton()
@@ -74,33 +65,25 @@ public class MatrixQuestion extends Page{
 	public void learnMoreMatrix()
 	{
 		frames();
-		WebElement learnMore = mainPanel().findElement(By.xpath("//app-display-single-matrix/div/div/div[4]/a/span"));
+		WebElement learnMore = mainPanel().findElement(By.xpath("//app-display-learnmore/div/a/span"));
 		learnMore.click();
 		driver.switchTo().defaultContent();
 	}
-	public void learnMoreText()
-	{
-		frames();
-		WebElement learnMoreText = mainPanel().findElement(By.xpath("//app-display-single-matrix/div/div/div[5]/div/p/p"));
-		System.out.println("Learn more Text for Matrix Question - " +learnMoreText.getText());
-		driver.switchTo().defaultContent();
-	}
-	public void clickOnContinue()
+	public void clickOnContinue() throws InterruptedException
 	{
 		frames();
 		WebElement button = mainPanel().findElement(By.cssSelector(".btn.panel-theme-button.btn-lg"));
 		button.click();
+		Thread.sleep(5000);
 		driver.switchTo().defaultContent();
 	}
 	
 	public void allFunctionsMatrix() throws InterruptedException
 	{
 		matrixQuestionHeader();
-		contentBelowMatrix();
 		printMatrix();
 		//selectRadioButton();
 		learnMoreMatrix();
-		learnMoreText();
 		clickOnContinue();
 	}
 

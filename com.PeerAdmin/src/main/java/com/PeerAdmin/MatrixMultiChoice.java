@@ -8,8 +8,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class MatrixMultiChoice extends Page {
+public class MatrixMultiChoice {
   
+	WebDriver driver;
 	  public MatrixMultiChoice(WebDriver driver)
 	  {
 		  this.driver=driver;
@@ -38,13 +39,7 @@ public class MatrixMultiChoice extends Page {
 			System.out.println("Matrix Multi Choice Header is  - " +header.getText());
 			driver.switchTo().defaultContent();
 		}
-		public void contentBelowMatrix()
-		{
-			frames();
-			WebElement content = mainPanel().findElement(By.xpath("//app-display-multi-matrix/div/div/p/p"));
-			System.out.println("Content below Matrix Multi Choice is  - " +content.getText());
-			driver.switchTo().defaultContent();
-		}
+
 		public void printMatrix() throws InterruptedException
 		{
 			frames();
@@ -54,10 +49,8 @@ public class MatrixMultiChoice extends Page {
 			List<WebElement> radio = data.findElements(By.cssSelector("[type='checkbox']"));
 			int radioSize = radio.size();
 			System.out.println(radio.size());
-			for (int i = 0; i < radioSize; i++) {
-				radio.get(i).click();
+				radio.get(2).click();
 				Thread.sleep(5000);
-			}
 			driver.switchTo().defaultContent();
 		}
 		public void selectCheckBox()
@@ -77,15 +70,8 @@ public class MatrixMultiChoice extends Page {
 		public void learnMoreMatrix()
 		{
 			frames();
-			WebElement learnMore = mainPanel().findElement(By.xpath("//app-display-multi-matrix/div/div/div[4]/a/span"));
+			WebElement learnMore = mainPanel().findElement(By.xpath("//app-display-learnmore/div/a/span"));
 			learnMore.click();
-			driver.switchTo().defaultContent();
-		}
-		public void learnMoreText()
-		{
-			frames();
-			WebElement learnMoreText = mainPanel().findElement(By.xpath("//app-display-multi-matrix/div/div/div[5]/div/p/p"));
-			System.out.println("Learn more Text for Matrix Question - " +learnMoreText.getText());
 			driver.switchTo().defaultContent();
 		}
 		public void clickOnContinue()
@@ -99,11 +85,9 @@ public class MatrixMultiChoice extends Page {
 		public void allFunctionsMultiChoice() throws InterruptedException
 		{
 			matrixQuestionHeader();
-			contentBelowMatrix();
 			printMatrix();
 		//	selectCheckBox();
 			learnMoreMatrix();
-			learnMoreText();
 			clickOnContinue();	
 		}
 

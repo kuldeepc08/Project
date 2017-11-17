@@ -8,7 +8,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class SingleAndMultiple extends Page{
+public class SingleAndMultiple{
+	WebDriver driver;
 	
 	public SingleAndMultiple(WebDriver driver)
 	{
@@ -52,7 +53,7 @@ public class SingleAndMultiple extends Page{
 		frames();
         List<WebElement> size= mainPanel().findElements(By.cssSelector("[type='radio']"));
         System.out.println("" +size);
-        size.get(0).click();
+        size.get(1).click();
         driver.switchTo().defaultContent();
 		
 	}
@@ -67,7 +68,7 @@ public class SingleAndMultiple extends Page{
 	{
 		frames();
 		WebElement learnMoreText = mainPanel().findElement
-				(By.xpath("//app-display-single-choice-radio/div/div/div[5]/div/p/p"));
+				(By.cssSelector(".well>p>p"));
 		System.out.println("Learn more Text for single and matrix Question - " +learnMoreText.getText());
 		driver.switchTo().defaultContent();
 	}

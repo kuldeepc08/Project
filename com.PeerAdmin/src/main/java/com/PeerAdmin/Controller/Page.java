@@ -1,14 +1,19 @@
 package com.PeerAdmin.Controller;
 
+import java.net.URL;
 import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 public abstract class Page { 
-	protected WebDriver driver; 
-	protected final String baseUrl ="http://165.227.64.227/portal/772#/loginHome"; 
-	protected boolean isElementPresent(By by) { 
+	public static WebDriver driver; 
+	protected final String baseUrl ="http://peermvc.peerplatform.org/portal/782#/loginHome"; 
+	
+	
+	protected boolean isElementPresent(By by) {
+		
 		boolean present = true; 
 		try { driver.findElement(by); 
 		} 

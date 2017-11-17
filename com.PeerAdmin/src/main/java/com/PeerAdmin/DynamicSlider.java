@@ -9,8 +9,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class DynamicSlider extends Page {
+public class DynamicSlider {
 
+	WebDriver driver;
 	public DynamicSlider(WebDriver driver)
 	{
 		this.driver=driver;
@@ -65,7 +66,7 @@ public class DynamicSlider extends Page {
 	{
 		frames();
 		WebElement learnMore = mainPanel().findElement
-				(By.xpath("//app-display-dynamic-slider/div/div/form/div[3]/a/span"));
+				(By.xpath("//app-display-learnmore/div/a/span"));
 		learnMore.click();
 		driver.switchTo().defaultContent();
 	}
@@ -77,17 +78,21 @@ public class DynamicSlider extends Page {
 		System.out.println("Learn more Text for Dynamic Slider Question - " +learnMoreText.getText());
 		driver.switchTo().defaultContent();
 	}
-	public void textBoxDynamicSlider()
+	public void textBoxDynamicSlider() throws InterruptedException
 	{
 		frames();
-		WebElement dynaTextBox = mainPanel().findElement(By.id("value"));
-		dynaTextBox.sendKeys("Slider");	
+		WebElement dynaTextBox = mainPanel().findElement
+				(By.cssSelector("input[type='text'][minlength='1']"));
+		dynaTextBox.sendKeys("test");	
+		Thread.sleep(5000);
+		List<WebElement> responses = driver.findElements(By.xpath("//ng2-dropdown-menu/div[1]"));
+		responses.get(0).click();
 		driver.switchTo().defaultContent();
 	}
 	public void addResponseButton() throws InterruptedException
 	{
 		frames();
-		WebElement responseButton = mainPanel().findElement(By.cssSelector(".btn.theme-button2"));
+		WebElement responseButton = mainPanel().findElement(By.cssSelector("button[type='submit']"));
 		responseButton.click();
 		driver.switchTo().defaultContent();
 		moveDown();
@@ -102,14 +107,28 @@ public class DynamicSlider extends Page {
 		Thread.sleep(2000);
 		driver.switchTo().defaultContent();
 	}
+	
+	public void moveUp() throws InterruptedException
+	{
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+	    jse.executeScript("window.scrollBy(0,-450)", "");
+		
+		/*JavascriptExecutor je = (JavascriptExecutor) driver;
+		//Identify the WebElement which will appear after scrolling down
+		 
+		WebElement element = driver.findElement(By.xpath("//div[@href='#collapseOne']"));;
+		// now execute query which actually will scroll until that element is not appeared on page.
+		je.executeScript("arguments[0].scrollIntoView(true);",element);*/	 
+	}
 	public void allFuntionsDynaSlider() throws InterruptedException
 	{
 		dynamicSliderHeader();
-		contentBelowDynamicSlider();
+		//contentBelowDynamicSlider();
 		learnMoreDynamicSlider();
-		learnMoreText();
+		//learnMoreText();
 		textBoxDynamicSlider();
 		addResponseButton();
 		clickOnContinue();
+		moveUp();
 	}
 }

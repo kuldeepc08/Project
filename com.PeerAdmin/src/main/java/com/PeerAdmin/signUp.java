@@ -7,18 +7,25 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class signUp extends Page {
+
+public class signUp {
 	private WebElement startExerciseBtn;
 	private WebElement SignInButton;
+	protected final String baseUrl = "http://peermvc.peerplatform.org/portal/782#/loginHome";
+	
+	WebDriver driver;
 
-	public signUp(WebDriver driver) throws InterruptedException {
-		this.driver = driver;
+	public signUp(WebDriver driver) {
+		// TODO Auto-generated constructor stub
+		this.driver=driver;
 	}
+
 	public void openUrl() throws InterruptedException
 	{
 		driver.navigate().to(baseUrl);
 		Thread.sleep(5000);
 	}
+	
 	public void testClickOnStartNow() throws InterruptedException
 	{
 	startExerciseBtn = (new WebDriverWait(driver, 60))
@@ -33,9 +40,10 @@ public class signUp extends Page {
 		WebElement fr = (new WebDriverWait(driver, 60))
 				  .until(ExpectedConditions.presenceOfElementLocated(By.id("u")));
 		fr.clear();
-		fr.sendKeys("pt@dynamisch.co");
+		fr.sendKeys("parag@dynamisch.co");
 		Thread.sleep(5000);
 	}
+	
 	public void clickOnSignInButton() throws InterruptedException
 	{
 		SignInButton = (new WebDriverWait(driver, 30))
@@ -43,6 +51,7 @@ public class signUp extends Page {
 		SignInButton.click();
 		Thread.sleep(5000);
 	}
+	
 	public void questions() throws InterruptedException
 	{
 		final ChallengeAns objChallengeAns = new ChallengeAns();
@@ -109,29 +118,43 @@ public class signUp extends Page {
 		   Thread.sleep(5000);
 		
 	}
-	public void clickOnSignInButtonForQuestion() throws InterruptedException
+	
+	public void clickOnSignInButtonForQuestion(WebDriver driver)
 	{
-		WebElement element =(new WebDriverWait(driver, 60))
-				  .until(ExpectedConditions.elementToBeClickable
-						  (By.cssSelector("input.btn.btn-large.signup.bold")));
-				  element.click();
-		  Thread.sleep(5000);
+		try{
+		WebElement element = 
+				driver.findElement(By.xpath("//input[contains(@value,'Sign in')]"));
+		element.click();
+		
+				  
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
-	public void sendPassword() throws InterruptedException
+	
+	public void sendPassword(WebDriver driver)
 	{
-		   WebElement element =(new WebDriverWait(driver, 60))
-			  .until(ExpectedConditions.visibilityOfElementLocated
-					  (By.name("j_password")));
-		       element.clear();
+		try{
+		   WebElement element = driver.findElement(
+					  (By.cssSelector("#j_password")));
+		       //element.clear();
 			  element.sendKeys("Test123$$");
 		  Thread.sleep(5000);
-		 
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
+	
 	public void clickOnSignInButtonForLogin() throws InterruptedException
 	{
 		System.out.println("Click on Sign in Button");
 		WebElement element =(new WebDriverWait(driver, 60))
-				  .until(ExpectedConditions.elementToBeClickable(By.id("passwordBtn")));
+				  .until(ExpectedConditions.elementToBeClickable
+						  (By.cssSelector("#passwordBtn")));
 		element.click();
 		System.out.println("Clicked on Sign in Button?");
 		  Thread.sleep(5000); 

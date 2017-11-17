@@ -8,8 +8,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class PickADate extends Page{
+public class PickADate{
    
+	WebDriver driver;
 	public PickADate(WebDriver driver)
 	{
 		this.driver=driver;
@@ -54,7 +55,7 @@ public class PickADate extends Page{
 	public void learnMoreSingleAndMultiple()
 	{
 		frames();
-		WebElement learnMore = mainPanel().findElement(By.xpath("//app-display-date-picker/div/div/div[3]/a/span"));
+		WebElement learnMore = mainPanel().findElement(By.xpath("//app-display-learnmore/div/a/span"));
 		learnMore.click();
 		driver.switchTo().defaultContent();
 	}
@@ -77,10 +78,10 @@ public class PickADate extends Page{
 	public void allFuntionsPickaDate()
  	{   
 		pickADateQuestionHeader();
-		contentBelowPickADateQuestion();
+	//	contentBelowPickADateQuestion();
 		sendDate();
 		learnMoreSingleAndMultiple();
-		learnMoreText();
+		//learnMoreText();
 		clickOnContinue();
 	}
 }

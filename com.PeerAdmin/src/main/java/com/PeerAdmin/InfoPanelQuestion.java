@@ -9,7 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class InfoPanelQuestion extends Page {
+public class InfoPanelQuestion {
+	WebDriver driver;
 
 	public InfoPanelQuestion(WebDriver driver)
 	{
@@ -42,7 +43,7 @@ public class InfoPanelQuestion extends Page {
 	public WebElement mainPanel()
 	{
 		WebElement panel = driver.findElement
-				(By.xpath("//app-display-info-panel/div/div"));
+				(By.xpath("//app-display-info-panel/div[1]/div"));
 		return panel;
 	}
 	
@@ -89,54 +90,40 @@ public class InfoPanelQuestion extends Page {
 		frames();
 		WebElement header = mainPanel().findElement(By.cssSelector(".heading-top>p"));
 		System.out.println("Information Header is  - " +header.getText());
-		driver.switchTo().defaultContent();
-	}
-	public void informationalContent()
-	{
-		frames();
-		WebElement content = mainPanel().findElement
-				(By.xpath("//app-display-info-panel/div/div/p/p/span"));
-		System.out.println("Content below info is  - " +content.getText());
-		driver.switchTo().defaultContent();
-	}
-	public void clickOnLearnMoreLink() throws InterruptedException
-	{
 		
-		moveUp();
-		System.out.println("learn more 1");
-		Thread.sleep(5000);
-		//moveUp()
-		//driver.findElement(By.cssSelector("a[class='themeinfoclass'][onclick='showFooterDiv('question_15443',0,'15443')'] > #caret_question_15443")).click();
-		mainPanel().findElement(By.xpath("//span[contains(text(),'Learn More')]")).click();
+		/*WebElement content = mainPanel().findElement
+				(By.xpath("//app-display-info-panel/div/div/p/p/span"));
+		System.out.println("Content below info is  - " +content.getText());*/
+		
 		driver.switchTo().defaultContent();
 	}
-	public void testReadLearnMoreContent()
+	public void clickOnLearnMoreLink()
 	{
 		frames();
 		try{
-			if(driver.findElements(By.xpath("//app-display-info-panel/div/div/div[5]/div/p/p")).size()!= 0)
-			{
-		WebElement element = mainPanel().findElement(By.xpath("//app-display-info-panel/div/div/div[5]/div/p/p"));
-		System.out.println("Learn More Text for Info Panel - \n" +element.getText());
-		
-		driver.switchTo().defaultContent();
-		moveDown();
-		Thread.sleep(5000);
-			}
+		mainPanel().findElement(By.xpath("//span[contains(text(),'Learn More')]")).click();
 		}
 		catch(Exception e)
 		{
-			System.out.println("Learn more link is not present - " +e);
+			e.printStackTrace();
 		}
+		driver.switchTo().defaultContent();
+		
 	}
 	public void clickOnContinueButton()
 	{
 		frames();
 		/*String style = driver.findElement(By.cssSelector("a[class='btn.panel-theme-button.btn-lg ng-tns-c4-1'] [ng-reflect-ng-style='[object Object]')")).getAttribute("style");
 		System.out.println("style elements is - " +style);*/
-		WebElement button = mainPanel().findElement(By.cssSelector("a.btn.panel-theme-button"));
-		button.click();
+		try{
+		mainPanel().findElement
+				(By.cssSelector(".btn.panel-theme-button.btn-lg")).click();
+		System.out.println("Clicked on Button");
+		}
+		catch(Exception e)
+		{
 		System.out.println("Click on the button?");
+		}
 		driver.switchTo().defaultContent();
 	}
 	
@@ -145,9 +132,7 @@ public class InfoPanelQuestion extends Page {
 		/*imageSize();
 		checkimageisPresent();*/
 		infoQuestionHeader();
-		informationalContent();
-		clickOnLearnMoreLink();
-		testReadLearnMoreContent();
+		//clickOnLearnMoreLink();
 		clickOnContinueButton();
 		
 	}

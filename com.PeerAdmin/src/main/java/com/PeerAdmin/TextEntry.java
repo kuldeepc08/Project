@@ -8,8 +8,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-public class TextEntry extends Page{
+public class TextEntry{
 
+	WebDriver driver;
 	public TextEntry(WebDriver driver)
 	{
 		this.driver=driver;
@@ -28,7 +29,7 @@ public class TextEntry extends Page{
 	}
 	public WebElement mainPanel()
 	{
-		WebElement panel = driver.findElement(By.xpath("//app-display-dynamic-slider/div/div/form"));
+		WebElement panel = driver.findElement(By.xpath("//app-display-text-entry/div[1]/form/div"));
 		return panel;
 	}
 	public void textEntryHeader()
@@ -42,30 +43,17 @@ public class TextEntry extends Page{
 	{
 		frames();
 		WebElement content = mainPanel().findElement
-				(By.xpath("//app-display-dynamic-slider/div/div/form/p/p"));
+				(By.cssSelector(".ng-tns-c14-6>p"));
 		System.out.println("Content below question - " +content.getText());
-		driver.switchTo().defaultContent();
-	}
-	public void textBoxPlaceHolderTextEntryQuestion()
-	{
-		frames();
-		String placeHolder = mainPanel().findElement(By.id("textentryinput")).getAttribute("placeholder");
-		System.out.println("Added Placeholder is - " +placeHolder);
-		driver.switchTo().defaultContent();
-	}
-	
-	public void textBoxWidth()
-	{
-		frames();
-		String width = mainPanel().findElement(By.id("textentryinput")).getAttribute("style");
-		System.out.println("Text box width is 500px - " +Integer.parseInt(width));
 		driver.switchTo().defaultContent();
 	}
 	public void sendValueTextBox()
 	{
 		frames();
-		WebElement sendValue=  mainPanel().findElement(By.id("textentryinput"));
-		sendValue.sendKeys("organs");
+		WebElement sendValue=  mainPanel().findElement(By.xpath("//div/form/div/div[1]/tag-input/div/div"));
+		sendValue.sendKeys("test");
+	/*	List<WebElement> responses = mainPanel().findElements(By.xpath("//ng2-dropdown-menu/div[1]"));
+		responses.get(0).click();*/
 		driver.switchTo().defaultContent();
 	}
 	public void clickOnLearnMore()
@@ -92,8 +80,7 @@ public class TextEntry extends Page{
 	public void allFunctionsTextEntry()
 	{
 		textEntryHeader();
-		textBelowQuestion();
-		textBoxPlaceHolderTextEntryQuestion();
+		//textBelowQuestion();
 		sendValueTextBox();
 		clickOnLearnMore();
 		learnMoreText();

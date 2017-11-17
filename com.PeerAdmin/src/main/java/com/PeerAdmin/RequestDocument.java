@@ -65,7 +65,7 @@ public class RequestDocument extends Page {
 	public void sendrequestToUpload()
 	{
 		frames();
-		WebElement request = mainPanel().findElement(By.cssSelector("[data-toggle='tab'][href='#SentRequest']"));
+		WebElement request = mainPanel().findElement(By.id("recipients"));
 		System.out.println(request.isSelected());
 		
 		if (request.isSelected()==true)
@@ -84,13 +84,6 @@ public class RequestDocument extends Page {
 		System.out.println(subject.getText());
 		driver.switchTo().defaultContent();
 	}
-	public void checkMessage()
-	{
-		frames();
-		WebElement message = mainPanel().findElement(By.id("message"));
-		System.out.println(message.getText());
-		driver.switchTo().defaultContent();
-	}
 	public void clickOnContinue()
 	{
 		frames();
@@ -101,13 +94,12 @@ public class RequestDocument extends Page {
 	public void allFuntionsRequestQuestions()
 	{
 		requestQuestionHeader();
-		contentBelowRequestQuestion();
+		//contentBelowRequestQuestion();
 		learnMoreArea();
-		learnMoreText();
+	//	learnMoreText();
 		sendrequestToUpload();
 		checkSubject();
 		clickOnContinue();
-		checkMessage();
 		
 	}
 	
