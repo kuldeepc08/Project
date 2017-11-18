@@ -1,11 +1,8 @@
 package com.PeerAdmin.Controller;
 
-import java.net.URL;
 import java.util.NoSuchElementException;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
 public abstract class Page { 
 	public static WebDriver driver; 

@@ -47,6 +47,7 @@ public class MatrixQuestion{
 		System.out.println("Matrix Table Content - \n \t"  +data.getText());
 		List<WebElement> radio = data.findElements(By.cssSelector("[type='radio']"));
 		int radioSize = radio.size();
+		System.out.println(radioSize);
 			radio.get(1).click();
 			Thread.sleep(2000);
 		driver.switchTo().defaultContent();

@@ -48,7 +48,7 @@ public class MatrixMultiChoice {
 			System.out.println("Matrix Table Content - \n \t"  +data.getText());
 			List<WebElement> radio = data.findElements(By.cssSelector("[type='checkbox']"));
 			int radioSize = radio.size();
-			System.out.println(radio.size());
+			System.out.println(radioSize);
 				radio.get(2).click();
 				Thread.sleep(5000);
 			driver.switchTo().defaultContent();
