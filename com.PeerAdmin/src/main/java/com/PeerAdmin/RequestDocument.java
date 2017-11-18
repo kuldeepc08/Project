@@ -8,8 +8,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class RequestDocument extends Page {
-	
+public class RequestDocument{
+	WebDriver driver;
 	public RequestDocument(WebDriver driver)
 	{
 		this.driver = driver;
@@ -36,7 +36,7 @@ public class RequestDocument extends Page {
 	{
 		frames();
 		WebElement header = mainPanel().findElement(By.cssSelector(".heading-top>p"));
-		System.out.println("Area Header is  - " +header.getText());
+		System.out.println("Request Header is  - " +header.getText());
 		driver.switchTo().defaultContent();
 	}
 	public void contentBelowRequestQuestion()
@@ -66,14 +66,7 @@ public class RequestDocument extends Page {
 	{
 		frames();
 		WebElement request = mainPanel().findElement(By.id("recipients"));
-		System.out.println(request.isSelected());
-		
-		if (request.isSelected()==true)
-		{
-			WebElement enterEmail = mainPanel().findElement(By.id("recipients"));
-			System.out.println("Placehoder - " +enterEmail.getAttribute("placeholder"));
-			enterEmail.sendKeys(StaticClass.email);
-		}
+		request.sendKeys("poo.ukey@gmail.com");
 		driver.switchTo().defaultContent();
 	}
 	
@@ -95,10 +88,10 @@ public class RequestDocument extends Page {
 	{
 		requestQuestionHeader();
 		//contentBelowRequestQuestion();
-		learnMoreArea();
+		//learnMoreArea();
 	//	learnMoreText();
 		sendrequestToUpload();
-		checkSubject();
+		//checkSubject();
 		clickOnContinue();
 		
 	}

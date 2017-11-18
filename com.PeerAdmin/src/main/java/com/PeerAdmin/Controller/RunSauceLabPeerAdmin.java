@@ -22,6 +22,7 @@ import com.PeerAdmin.InfoPanelQuestion;
 import com.PeerAdmin.MatrixMultiChoice;
 import com.PeerAdmin.MatrixQuestion;
 import com.PeerAdmin.PickADate;
+import com.PeerAdmin.RequestDocument;
 import com.PeerAdmin.SingleAndMultiple;
 import com.PeerAdmin.SingleChoiceMulti;
 import com.PeerAdmin.SingleandMultiPulldown;
@@ -195,6 +196,9 @@ public static final String USERNAME = System.getenv("SAUCE_USERNAME");//aniketk
 		
 		PickADate objPickADate = new PickADate(driver);
 		objPickADate.allFuntionsPickaDate();
+
+		RequestDocument objRequestDocument = new RequestDocument(driver);
+		objRequestDocument.allFuntionsRequestQuestions();
 		
 		eSign objeSign = new eSign(driver);
 		objeSign.allFuntionseeSignQuestions();

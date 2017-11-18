@@ -22,5 +22,5 @@ public class StaticClass {
 	public final static String Comment="Comment test";
 	
 	//Request Document
-	public final static String email="";
+	public final static String email="poo.ukey@gmail.com";
 	}

@@ -3,6 +3,7 @@ package com.PeerAdmin;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -65,11 +66,13 @@ public class eSign{
 		Thread.sleep(5000);
 		driver.switchTo().defaultContent();
 	}
+	
+	//div/div[2]/div/div[5]/div[3]/a[2]
 	public void clickOnTypeASign() throws InterruptedException
 	{
 		frames();
 		WebElement yesSign = mainPanel().findElement
-				(By.xpath("//form/div/div[2]/div/div[3]/a"));
+				(By.xpath("//app-display-esignature/div/form/div/div[2]/div/div[4]/a"));
 		yesSign.click();
 		Thread.sleep(5000);
 		driver.switchTo().defaultContent();
@@ -89,7 +92,7 @@ public class eSign{
 		WebElement sign = mainPanel().findElement
 				(By.id("fontSignature"));
 		Select objSelect = new Select(sign);
-		objSelect.selectByIndex(2);
+		objSelect.selectByVisibleText("HenryMorganHand");
 		
 		Thread.sleep(5000);
 		driver.switchTo().defaultContent();
@@ -114,12 +117,23 @@ public class eSign{
 		Thread.sleep(5000);
 		driver.switchTo().defaultContent();
 	}
+	public void moveDown() throws InterruptedException
+	{
+		frames();
+		WebElement element = mainPanel().findElement(By.xpath
+				("//app-display-esignature/div/form/div/div[2]/div/div[4]/a"));
+		((JavascriptExecutor) driver).executeScript(
+                "arguments[0].scrollIntoView();", element);	 
+		Thread.sleep(5000);
+		driver.switchTo().defaultContent();
+	}
 	public void allFuntionseeSignQuestions() throws InterruptedException
 	{
 		clickOnContinue();
 		learnMoreArea();
 		//learnMoreText();
 		clickOnYesButton();
+		moveDown();
 		clickOnTypeASign();
 		sendSign();
 		selectFontName();
