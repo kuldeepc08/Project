@@ -35,7 +35,6 @@ public class SingleChoiceMulti{
 	public void singlemultiChoiceHeader()
 	{
 		frames();
-		
 		WebElement header = mainPanel().findElement(By.cssSelector(".heading-top>p"));
 		System.out.println("Single and multiple question Header is  - " +header.getText());
 		driver.switchTo().defaultContent();
@@ -44,7 +43,7 @@ public class SingleChoiceMulti{
 	public void printAllDataoFCheckBox()
 	{
 		frames();
-		List<WebElement> content = mainPanel().findElements(By.cssSelector("[type='checkbox']"));
+		List<WebElement> content = mainPanel().findElements(By.cssSelector("[type='checkbox'][name='display-list']"));
 		for (WebElement webElement : content) {
 			System.out.println(webElement.getSize());
 		}
@@ -64,7 +63,7 @@ public class SingleChoiceMulti{
 	public void clickOnContinue() throws InterruptedException
 	{
 		frames();
-		WebElement button = mainPanel().findElement(By.cssSelector(".btn.panel-theme-button.btn-lg"));
+		WebElement button = mainPanel().findElement(By.xpath("//label[contains(text(),'Continue')]"));
 		button.click();
 		Thread.sleep(5000);
 		driver.switchTo().defaultContent();

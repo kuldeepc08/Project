@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -73,7 +74,7 @@ public static final String USERNAME = System.getenv("SAUCE_USERNAME");//aniketk
 		
       browsers.add(new String[]{"Windows 10", "51", "firefox"}); 
        	
-	// browsers.add(new String[]{"Windows 10", "56.0", "chrome"});
+	//  browsers.add(new String[]{"Windows 10", "56.0", "chrome"});
 	 /* 	
 	//   browsers.add(new String[]{"Windows 10", "54.0", "chrome"});
 		
@@ -118,8 +119,8 @@ public static final String USERNAME = System.getenv("SAUCE_USERNAME");//aniketk
 		 * ipad - 768 * 1024
 		 * ipad pro - 1024*1366
 		 */
-		//driver.manage().window().setSize(dimension);
-		//driver.manage().window().maximize();
+		/*driver.manage().window().setSize(dimension);
+	    driver.manage().window().maximize();*/
 		}
 	
 	@Test

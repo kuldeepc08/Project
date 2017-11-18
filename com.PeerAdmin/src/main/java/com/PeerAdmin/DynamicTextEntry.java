@@ -71,14 +71,31 @@ public class DynamicTextEntry{
 		System.out.println("Learn more Text for Dynamic Slider Question - " +learnMoreText.getText());
 		driver.switchTo().defaultContent();
 	}
+	public void testSendValues()
+	{
+		frames();
+		WebElement box = mainPanel().findElement
+				(By.id("textentryinput"));
+		box.sendKeys("Pooja");
+		driver.switchTo().defaultContent();
+	}
 	public void clickOnContinue() throws InterruptedException
 	{
 		frames();
-		WebElement button = mainPanel().findElement(By.cssSelector("a.btn.panel-theme-button.btn-lg"));
+		WebElement button = mainPanel().findElement(By.xpath("//label[contains(text(),'Continue')]"));
 		button.click();
 		driver.switchTo().defaultContent();
-		jse.executeScript("window.scrollBy(0,-250)", "");
 		Thread.sleep(1000);
+	}
+	public void moveUp() throws InterruptedException
+	{
+		frames();
+		WebElement element = driver.findElement(By.xpath
+				("//app-display-single-choice-radio/div/div/app-display-header/div/p"));
+		((JavascriptExecutor) driver).executeScript(
+                "arguments[0].scrollIntoView();", element);	 
+		Thread.sleep(5000);
+		driver.switchTo().defaultContent();
 	}
 	
 	public void allFunctionsDynaTextEntry() throws InterruptedException
@@ -86,8 +103,11 @@ public class DynamicTextEntry{
 		dynamicTextEntryHeader();
 		enterTextToTextBox();
 		addResponseButton();
+		testSendValues();
 	//	learnMoreDynamicSlider();
 		//learnMoreText();
 		clickOnContinue();
+		moveUp();
+		
 	}
 }

@@ -110,15 +110,12 @@ public class DynamicSlider {
 	
 	public void moveUp() throws InterruptedException
 	{
-		JavascriptExecutor jse = (JavascriptExecutor) driver;
-	    jse.executeScript("window.scrollBy(0,-450)", "");
-		
-		/*JavascriptExecutor je = (JavascriptExecutor) driver;
-		//Identify the WebElement which will appear after scrolling down
-		 
-		WebElement element = driver.findElement(By.xpath("//div[@href='#collapseOne']"));;
-		// now execute query which actually will scroll until that element is not appeared on page.
-		je.executeScript("arguments[0].scrollIntoView(true);",element);*/	 
+		frames();
+		WebElement element = driver.findElement(By.xpath
+				("//app-display-text-entry/div/form/div/app-display-header/div/p"));
+		((JavascriptExecutor) driver).executeScript(
+                "arguments[0].scrollIntoView();", element);	 
+		driver.switchTo().defaultContent();
 	}
 	public void allFuntionsDynaSlider() throws InterruptedException
 	{

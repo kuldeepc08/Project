@@ -42,13 +42,15 @@ public class MatrixQuestion{
 	public void printMatrix() throws InterruptedException
 	{
 		frames();
-		WebElement table = mainPanel().findElement(By.tagName("table"));
+		mainPanel().findElement(By.xpath("//table/tbody/tr[1]/td[2]/div")).click();
+		mainPanel().findElement(By.xpath("//table/tbody/tr[2]/td[3]/div")).click();
+			/*	tagName("table"));
 		WebElement data = table.findElement(By.tagName("td"));
-		System.out.println("Matrix Table Content - \n \t"  +data.getText());
+		//System.out.println("Matrix Table Content - \n \t"  +data.getText());
 		List<WebElement> radio = data.findElements(By.cssSelector("[type='radio']"));
 		int radioSize = radio.size();
 		System.out.println(radioSize);
-			radio.get(1).click();
+			radio.get(1).click();*/
 			Thread.sleep(2000);
 		driver.switchTo().defaultContent();
 	}

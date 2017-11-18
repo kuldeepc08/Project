@@ -55,7 +55,7 @@ public class AreaQuestion{
 		for (int i = 0; i < element.size(); i++) {
 			System.out.println("All Options from DropDown - " +element.get(i).getText());
 		}
-		objSelect.selectByIndex(1);
+		objSelect.selectByVisibleText("cm");
 		driver.switchTo().defaultContent();
 	}
 	public void learnMoreArea()

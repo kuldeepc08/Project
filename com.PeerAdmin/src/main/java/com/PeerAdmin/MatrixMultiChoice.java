@@ -43,14 +43,16 @@ public class MatrixMultiChoice {
 		public void printMatrix() throws InterruptedException
 		{
 			frames();
-			WebElement table = mainPanel().findElement(By.tagName("table"));
-			WebElement data = table.findElement(By.tagName("td"));
-			System.out.println("Matrix Table Content - \n \t"  +data.getText());
-			List<WebElement> radio = data.findElements(By.cssSelector("[type='checkbox']"));
+             mainPanel().findElement(By.xpath("//table/tbody/tr[2]/td[3]")).click();
+             mainPanel().findElement(By.xpath("//table/tbody/tr[3]/td[3]")).click();
+             mainPanel().findElement(By.xpath("//table/tbody/tr[2]/td[4]")).click();
+			
+			
+			/*List<WebElement> radio = data.findElements(By.cssSelector("[type='checkbox']"));
 			int radioSize = radio.size();
 			System.out.println(radioSize);
 				radio.get(2).click();
-				Thread.sleep(5000);
+				Thread.sleep(5000);*/
 			driver.switchTo().defaultContent();
 		}
 		public void selectCheckBox()

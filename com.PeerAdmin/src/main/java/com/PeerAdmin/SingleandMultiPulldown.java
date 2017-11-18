@@ -44,10 +44,10 @@ public class SingleandMultiPulldown{
 	public void clickOnPulldown() throws InterruptedException
 	{
 		frames();
-		WebElement element = mainPanel().findElement(By.cssSelector("select#response"));
+		WebElement element = mainPanel().findElement(By.id("response"));
 		Thread.sleep(5000);
 		Select select1 = new Select(element);
-		select1.selectByIndex(StaticClass.pullDown);
+		select1.selectByVisibleText("one");
 		/*List<WebElement> elements = panel.findElements(By.tagName("option"));
 		for (WebElement webElement : elements) {
 			String value = webElement.getText();
@@ -80,7 +80,7 @@ public class SingleandMultiPulldown{
 	public void clickOnContinue()
 	{
 		frames();
-		WebElement button = mainPanel().findElement(By.cssSelector("//label[contains(text(),'Continue')]"));
+		WebElement button = mainPanel().findElement(By.xpath("//label[contains(text(),'Continue')]"));
 		button.click();
 		driver.switchTo().defaultContent();
 	}
@@ -90,7 +90,7 @@ public class SingleandMultiPulldown{
 		singleandMultipleHeader();
 		clickOnPulldown();
 		learnMoreSingleAndMultiple();
-		clickOnClearButton();
+		//clickOnClearButton();
 		clickOnContinue();
 	}
 }

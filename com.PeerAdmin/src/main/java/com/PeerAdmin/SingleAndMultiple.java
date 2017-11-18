@@ -1,7 +1,6 @@
 package com.PeerAdmin;
 
 import java.util.List;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,16 +14,13 @@ public class SingleAndMultiple{
 	{
 		this.driver=driver;
 	}
-
 	public void frames()
 	{
 		List<WebElement> iframeElements = driver.findElements(By.tagName("iframe"));
 		System.out.println("The total number of iframes are " + iframeElements.size());
-		
 		WebElement frame = driver.findElement(By.id("surveysIframe"));
 		WebDriverWait wait = new WebDriverWait(driver, 150);
-		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frame));
-		
+		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(frame));	
 		System.out.println("in the Frame?");
 	}
 	public WebElement mainPanel()
@@ -35,7 +31,6 @@ public class SingleAndMultiple{
 	public void singleandMultipleHeader()
 	{
 		frames();
-		
 		WebElement header = mainPanel().findElement(By.cssSelector(".heading-top>p"));
 		System.out.println("Single and multiple question Header is  - " +header.getText());
 		driver.switchTo().defaultContent();
@@ -51,9 +46,9 @@ public class SingleAndMultiple{
 	public void selectRadioButton()
 	{
 		frames();
-        List<WebElement> size= mainPanel().findElements(By.cssSelector("[type='radio']"));
+        WebElement size= mainPanel().findElement(By.xpath("//span/div[1]/div/div/div/label"));
         System.out.println("" +size);
-        size.get(1).click();
+        size.click();
         driver.switchTo().defaultContent();
 		
 	}
@@ -75,14 +70,14 @@ public class SingleAndMultiple{
 	public void clickOnContinue()
 	{
 		frames();
-		WebElement button = mainPanel().findElement(By.cssSelector(".btn.panel-theme-button.btn-lg"));
+		WebElement button = mainPanel().findElement(By.xpath("//label[contains(text(),'Continue')]"));
 		button.click();
 		driver.switchTo().defaultContent();
 	}
 	public void allFunctionsSingleAndMultiple()
 	{
 		singleandMultipleHeader();
-		contentBelowSingleandMultiple();
+	//	contentBelowSingleandMultiple();
 		selectRadioButton();
 		learnMoreSingleAndMultiple();
 		learnMoreText();

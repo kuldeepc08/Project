@@ -50,7 +50,7 @@ public class TextEntry{
 	public void sendValueTextBox()
 	{
 		frames();
-		WebElement sendValue=  mainPanel().findElement(By.xpath("//div/form/div/div[1]/tag-input/div/div"));
+		WebElement sendValue=  mainPanel().findElement(By.cssSelector("[type='text']"));
 		sendValue.sendKeys("test");
 	/*	List<WebElement> responses = mainPanel().findElements(By.xpath("//ng2-dropdown-menu/div[1]"));
 		responses.get(0).click();*/
@@ -73,7 +73,7 @@ public class TextEntry{
 	public void clickOnContinueButton()
 	{
 		frames();
-		WebElement click = mainPanel().findElement(By.cssSelector("a.btn.panel-theme-button.btn-lg"));
+		WebElement click = mainPanel().findElement(By.xpath("//label[contains(text(),'Continue')]"));
 		click.click();
 		driver.switchTo().defaultContent();
 	}

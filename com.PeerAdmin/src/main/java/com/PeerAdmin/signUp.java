@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-public class signUp {
+public class signUp{
 	private WebElement startExerciseBtn;
 	private WebElement SignInButton;
 	protected final String baseUrl = "http://peermvc.peerplatform.org/portal/782#/loginHome";
